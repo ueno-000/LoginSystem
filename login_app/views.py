@@ -19,3 +19,8 @@ def logout_view(request):
 #ログインしているユーザーの情報表示画面
 def user_view(request):
     pass
+
+
+#他のユーザーの情報の表示
+def other_view(request):
+    pass
