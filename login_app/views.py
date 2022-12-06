@@ -1,3 +1,21 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+#ユーザー登録
+def signup_view(request):
+    pass
+
+
+#ユーザーログイン
+def login_view(request):
+    pass
+
+
+#ユーザーログアウト
+def logout_view(request):
+    pass
+
+
+#ログインしているユーザーの情報表示画面
+def user_view(request):
+    pass
