@@ -1,6 +1,13 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 
+def LoginView(request):
+    return HttpResponseRedirect('social:begin', kwargs=dict(backend='google-oauth2'))
 
+def index(request):
+    pass
+    
+# ログイン後に行いたい処理
 #ユーザー登録
 def signup_view(request):
     pass

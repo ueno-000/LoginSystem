@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'login_app',
+    'social_django',  # 追加
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',  # 追加
 ]
 
 ROOT_URLCONF = 'login_project.urls'
@@ -63,6 +65,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+                'social_django.context_processors.backends',  # 追加
+                'social_django.context_processors.login_redirect', # 追加
             ],
         },
     },
@@ -122,3 +127,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.open_id.OpenIdAuth',  # OpenId用
+    'social_core.backends.google.GoogleOpenId',  # Google OpenId用
+    'social_core.backends.google.GoogleOAuth2',  # Google OAuth2用
+
+    'social_core.backends.github.GithubOAuth2',  # Github用
+    'social_core.backends.twitter.TwitterOAuth',  # Twitter用
+    'social_core.backends.facebook.FacebookOAuth2',  # Facebook用
+
+    'django.contrib.auth.backends.ModelBackend',  # デフォルトバックエンド、必須。
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'hoge'  # クライアントID
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'hoge' # クライアント シークレット
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = '/'
+
